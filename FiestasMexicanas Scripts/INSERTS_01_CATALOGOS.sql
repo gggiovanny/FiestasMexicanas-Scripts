@@ -35,7 +35,7 @@ INSERT INTO CATALOGO_ESTADOS(cpaiIndice,cedoIndice,cedoNombre) VALUES (1,   30, 
 INSERT INTO CATALOGO_ESTADOS(cpaiIndice,cedoIndice,cedoNombre) VALUES (1,   31,   'YUCATÁN    ')                               
 INSERT INTO CATALOGO_ESTADOS(cpaiIndice,cedoIndice,cedoNombre) VALUES (1,   32,   'ZACATECAS     ')                               
 
-INSERT INTO CATALOGO_CIUDADES(cpaiIndice, cedoIndice, cciuIndice, cciuNombre) VALUES (1, 32, 1, 'MERIDA');
+INSERT INTO CATALOGO_CIUDADES(cpaiIndice, cedoIndice, cciuIndice, cciuNombre) VALUES (1, 31, 1, 'MERIDA');
 
 /* Catalogos de piñatas */
 /* Tipo:
@@ -69,4 +69,195 @@ INSERT INTO PRECIO_PINATA VALUES (7, 400, 600, 800, 300, 6.1, 1);
 INSERT INTO PRECIO_PINATA VALUES (8, 300, 400, 500, 200, 6.1, 1);
 INSERT INTO PRECIO_PINATA VALUES (9, 600, 800, 900, 200, 6.1, 0);
 
+INSERT INTO CATALOGO_CLIENTES
+(
+	cclieCodigo,                       
+	cclieNombres,
+	cclieApellidoPaterno,
+	cclieApellidoMaterno,
+	cclieRazonSocial,
+	cpaiIndice,
+	cedoIndice,
+	cciuIndice,
+	cclieDireccion,
+	cclieTelefono,
+	cclieCelular,
+	cclieEmail
+)
+VALUES
+(
+	1,
+	'DIDIER',
+	'PEÑA',
+	'NAVARRETE',
+	'DIDI INC.',
+	1,
+	31,
+	1,
+	'CALLE 123 COL. PACABTUN II ENTRE 123B Y 123C',
+	'+52999412345',
+	'+52999412345',
+	'didier.pena@gmail.com'
+);
 
+INSERT INTO PEDIDO_PINATA
+(
+	ppedCodigo, 
+	ctpinCodigo,
+	ppedDescripcion,
+	cclieCodigo, 
+	ppedPrecioUnitario,
+	ppedCantidad,
+	ppedFechaPedido,
+	ppedFechaEntregaProgramada
+)
+VALUES
+(
+	1,
+	3,
+	'Un poni salvaje rosado. CHICO, DETALLADO',
+	1,
+	250.5,
+	3,
+	CONVERT(date, getdate()),
+	CONVERT(date, '2019-05-30')
+);
+
+UPDATE PEDIDO_PINATA
+SET ppedFechaSalida = CONVERT(date, getdate())
+WHERE ppedCodigo = 1;
+
+INSERT INTO CATALOGO_PROVEEDORES
+(
+	cprovCodigo,                       
+	cprovNombres,
+	cprovApellidoPaterno,
+	cprovApellidoMaterno,
+	cprovRazonSocial,
+	cpaiIndice,
+	cedoIndice,
+	cciuIndice,
+	cprovDireccion,
+	cprovTelefono,
+	cprovCelular,
+	cprovEmail
+)
+VALUES
+(
+	1,
+	'JUAN CARLOS',
+	'AGUILAR',
+	'SANCHEZ',
+	'PAPELES DEL SURESTE',
+	1,
+	31,
+	1,
+	'CALLE 456 COL. MEXICO ENTRE 567B Y 567C',
+	'+52999133445',
+	'+52999133445',
+	'jaguilar@psur.com'
+);
+
+INSERT INTO CATALOGO_EMPLEADOS_PUESTOS VALUES (1, 'GERENTE');
+INSERT INTO CATALOGO_EMPLEADOS_PUESTOS VALUES (2, 'VENDEDOR');
+INSERT INTO CATALOGO_EMPLEADOS_PUESTOS VALUES (3, 'ARTESANO');
+
+
+
+INSERT INTO CATALOGO_EMPLEADOS
+(
+	cempCodigo,
+	cemppCodigo,
+	cempNombres,
+	cempApellidoPaterno,
+	cempApellidoMaterno,
+	cempSexo, --0 para hombre, 1 para mujer
+	cempFechaNacimiento,
+	cempHomoclave,
+	cpaiIndice,
+	cedoIndice,
+	cciuIndice,
+	cempDireccion,
+	cempTelefono,
+	cempCelular,
+	cempSueldoBruto,
+	cempFechaContratacion
+)
+VALUES
+(
+	1,
+	1, --es gerente
+	'DAVID RENAN',
+	'MAY',
+	'MALDONADO',
+	0, --hombre
+	CONVERT(date, '1967-12-29'),
+	'932',
+	1,
+	31,
+	1,
+	'CALLE 123B COL MEXICO',
+	'9991123456',
+	'9991123456',
+	20000,
+	CONVERT(date, '1990-07-13')
+);
+
+INSERT INTO CATALOGO_EMPLEADOS
+(
+	cempCodigo,
+	cemppCodigo,
+	cempNombres,
+	cempApellidoPaterno,
+	cempApellidoMaterno,
+	cempSexo, --0 para hombre, 1 para mujer
+	cempFechaNacimiento,
+	cempHomoclave,
+	cpaiIndice,
+	cedoIndice,
+	cciuIndice,
+	cempDireccion,
+	cempTelefono,
+	cempCelular,
+	cempSueldoBruto,
+	cempFechaContratacion
+)
+VALUES
+(
+	2,
+	3, --es artesano
+	'JORGE',
+	'CHAN',
+	'POOT',
+	0, --hombre
+	CONVERT(date, '1977-04-15'),
+	'963',
+	1,
+	31,
+	1,
+	'CALLE 123B COL BRISAS DEL SUR',
+	'9991646778',
+	'9991676436',
+	0,
+	CONVERT(date, '2002-03-17')
+);
+
+INSERT INTO ARTESANOS VALUES (2, 0.30, 0);
+
+INSERT INTO CATALOGO_PEDIDO_ESTATUS VALUES (1, 'EN ESPERA');
+INSERT INTO CATALOGO_PEDIDO_ESTATUS VALUES (2, 'ARMANDO');
+INSERT INTO CATALOGO_PEDIDO_ESTATUS VALUES (3, 'FORRANDO');
+INSERT INTO CATALOGO_PEDIDO_ESTATUS VALUES (4, 'TERMINADA');
+
+INSERT INTO ARTESANOS_PEDIDOS (cempCodigo, ppedCodigo, cpestCodigo) VALUES (2, 1, 1);
+
+UPDATE ARTESANOS_PEDIDOS
+SET cpestCodigo = 2
+WHERE ppedCodigo = 1;
+
+UPDATE ARTESANOS_PEDIDOS
+SET artpedFechaCompletado = CONVERT(date, getdate())
+WHERE ppedCodigo = 1;
+
+INSERT INTO USUARIOS_SISTEMA VALUES (1, 1, 'DAVID', '123456');
+INSERT INTO USUARIOS_SISTEMA VALUES (2, 2, 'JORGE', '246810');
