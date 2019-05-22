@@ -20,9 +20,9 @@
     <LogicalFolder Name="Queries" Type="0" Sorted="true">
       <Items>
         <FileNode Name="CREATE TABLES 01.sql">
-          <AssociatedConnectionMoniker />
-          <AssociatedConnSrvName />
-          <AssociatedConnUserName />
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:192.168.0.7:False:SA</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>192.168.0.7</AssociatedConnSrvName>
+          <AssociatedConnUserName>SA</AssociatedConnUserName>
           <FullPath>CREATE TABLES 01.sql</FullPath>
         </FileNode>
         <FileNode Name="DROP ALL TABLES.sql">
@@ -38,16 +38,10 @@
           <FullPath>INSERTS_01_CATALOGOS.sql</FullPath>
         </FileNode>
         <FileNode Name="SELECTS.sql">
-          <AssociatedConnectionMoniker />
-          <AssociatedConnSrvName />
-          <AssociatedConnUserName />
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:192.168.0.7:False:SA</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>192.168.0.7</AssociatedConnSrvName>
+          <AssociatedConnUserName>SA</AssociatedConnUserName>
           <FullPath>SELECTS.sql</FullPath>
-        </FileNode>
-        <FileNode Name="SQLQuery4.sql">
-          <AssociatedConnectionMoniker />
-          <AssociatedConnSrvName />
-          <AssociatedConnUserName />
-          <FullPath>SQLQuery4.sql</FullPath>
         </FileNode>
       </Items>
     </LogicalFolder>
