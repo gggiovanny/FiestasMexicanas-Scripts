@@ -19,23 +19,29 @@
     </LogicalFolder>
     <LogicalFolder Name="Queries" Type="0" Sorted="true">
       <Items>
-        <FileNode Name="CREATE TABLES 01.sql">
+        <FileNode Name="00 CREATE TABLES 01.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:192.168.0.7:False:SA</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>192.168.0.7</AssociatedConnSrvName>
           <AssociatedConnUserName>SA</AssociatedConnUserName>
-          <FullPath>CREATE TABLES 01.sql</FullPath>
+          <FullPath>00 CREATE TABLES 01.sql</FullPath>
         </FileNode>
-        <FileNode Name="DROP ALL TABLES.sql">
+        <FileNode Name="01 DROP ALL TABLES.sql">
           <AssociatedConnectionMoniker />
           <AssociatedConnSrvName />
           <AssociatedConnUserName />
-          <FullPath>DROP ALL TABLES.sql</FullPath>
+          <FullPath>01 DROP ALL TABLES.sql</FullPath>
         </FileNode>
-        <FileNode Name="INSERTS_01_CATALOGOS.sql">
+        <FileNode Name="03 INSERTS_01_CATALOGOS.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:192.168.0.7:False:SA</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>192.168.0.7</AssociatedConnSrvName>
           <AssociatedConnUserName>SA</AssociatedConnUserName>
-          <FullPath>INSERTS_01_CATALOGOS.sql</FullPath>
+          <FullPath>03 INSERTS_01_CATALOGOS.sql</FullPath>
+        </FileNode>
+        <FileNode Name="CREATE VIEWS.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:192.168.0.7:False:SA</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>192.168.0.7</AssociatedConnSrvName>
+          <AssociatedConnUserName>SA</AssociatedConnUserName>
+          <FullPath>CREATE VIEWS.sql</FullPath>
         </FileNode>
         <FileNode Name="SELECTS.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:192.168.0.7:False:SA</AssociatedConnectionMoniker>
