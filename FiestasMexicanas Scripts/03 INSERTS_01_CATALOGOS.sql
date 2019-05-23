@@ -100,10 +100,16 @@ VALUES
 	'didier.pena@gmail.com'
 );
 
+INSERT INTO CATALOGO_TAMANO_PINATA VALUES (1,'CHICA');
+INSERT INTO CATALOGO_TAMANO_PINATA VALUES (2,'MEDIANA');
+INSERT INTO CATALOGO_TAMANO_PINATA VALUES (3,'GRANDE');
+
 INSERT INTO PEDIDO_PINATA
 (
 	ppedCodigo, 
 	ctpinCodigo,
+	ctampCodigo,
+	ppedLlevaDetalle,
 	ppedDescripcion,
 	cclieCodigo, 
 	ppedPrecioUnitario,
@@ -115,7 +121,9 @@ VALUES
 (
 	1,
 	3,
-	'Un poni salvaje rosado. CHICO, DETALLADO',
+	1,
+	1,
+	'Un poni salvaje rosado.',
 	1,
 	250.5,
 	3,
@@ -126,6 +134,35 @@ VALUES
 UPDATE PEDIDO_PINATA
 SET ppedFechaSalida = CONVERT(date, getdate())
 WHERE ppedCodigo = 1;
+
+INSERT INTO PEDIDO_PINATA
+(
+	ppedCodigo, 
+	ctpinCodigo,
+	ctampCodigo,
+	ppedLlevaDetalle,
+	ppedDescripcion,
+	cclieCodigo, 
+	ppedPrecioUnitario,
+	ppedCantidad,
+	ppedFechaPedido,
+	ppedFechaEntregaProgramada
+)
+VALUES
+(
+	2,
+	8,
+	2,
+	0,
+	'Un balon del america :v',
+	1,
+	150,
+	1,
+	CONVERT(date, getdate()),
+	CONVERT(date, '2019-06-03')
+);
+
+
 
 INSERT INTO CATALOGO_PROVEEDORES
 (
@@ -242,7 +279,7 @@ VALUES
 	CONVERT(date, '2002-03-17')
 );
 
-INSERT INTO ARTESANOS VALUES (2, 0.30, 0);
+INSERT INTO ARTESANOS (cempCodigo, artGananciaPorcentaje, artSueldoBase) VALUES (2, 0.30, 0);
 
 INSERT INTO CATALOGO_PEDIDO_ESTATUS VALUES (1, 'EN ESPERA');
 INSERT INTO CATALOGO_PEDIDO_ESTATUS VALUES (2, 'ARMANDO');
@@ -250,6 +287,7 @@ INSERT INTO CATALOGO_PEDIDO_ESTATUS VALUES (3, 'FORRANDO');
 INSERT INTO CATALOGO_PEDIDO_ESTATUS VALUES (4, 'TERMINADA');
 
 INSERT INTO ARTESANOS_PEDIDOS (cempCodigo, ppedCodigo, cpestCodigo) VALUES (2, 1, 1);
+INSERT INTO ARTESANOS_PEDIDOS (cempCodigo, ppedCodigo, cpestCodigo) VALUES (2, 2, 1);
 
 UPDATE ARTESANOS_PEDIDOS
 SET cpestCodigo = 2
