@@ -1,13 +1,14 @@
-CREATE VIEW v_CLIENTES
+ALTER VIEW v_CLIENTES
 AS
 	SELECT
 		CC.cclieCodigo AS 'ID',
 		CC.cclieNombres AS 'NOMBRE',
 		CC.cclieApellidoPaterno + ' ' + cclieApellidoMaterno AS 'APELLIDOS',
-		CC.cclieDireccion AS 'DIRECCION',
-		CC.cclieTelefono AS 'TEL.',
-		CC.cclieCelular AS 'CEL.',
+		CC.cclieRazonSocial AS 'RAZON SOCIAL',
+		CC.cclieTelefono AS 'TEL',
+		CC.cclieCelular AS 'CEL',
 		CC.cclieEmail AS 'EMAIL',
+		CC.cclieDireccion AS 'DIRECCION',
 		CP.cpaiNombre AS 'PAIS',
 		CE.cedoNombre AS 'ESTADO',
 		CCIU.cciuNombre AS 'CIUDAD'
@@ -15,11 +16,14 @@ AS
 	INNER JOIN CATALOGO_PAISES CP
 		ON CC.cpaiIndice = CP.cpaiIndice
 	INNER JOIN CATALOGO_ESTADOS CE
-		ON CC.cedoIndice = CE.cedoIndice
+		ON CC.cpaiIndice = CE.cpaiIndice
+		AND CC.cedoIndice = CE.cedoIndice
 	INNER JOIN CATALOGO_CIUDADES CCIU
-		ON CC.cciuIndice = CCIU.cciuIndice;
+		ON CC.cpaiIndice = CCIU.cpaiIndice
+		AND CC.cedoIndice = CCIU.cedoIndice
+		AND CC.cciuIndice = CCIU.cciuIndice;
 
-CREATE VIEW v_PROVEEDORES
+ALTER VIEW v_PROVEEDORES
 AS
 	SELECT
 		CPR.cprovCodigo AS 'ID',
@@ -36,9 +40,12 @@ AS
 	INNER JOIN CATALOGO_PAISES CPA
 		ON CPR.cpaiIndice = CPA.cpaiIndice
 	INNER JOIN CATALOGO_ESTADOS CES
-		ON CPR.cedoIndice = CES.cedoIndice
+		ON CPR.cpaiIndice = CES.cpaiIndice
+		AND CPR.cedoIndice = CES.cedoIndice
 	INNER JOIN CATALOGO_CIUDADES CCIU
-		ON CPR.cciuIndice = CCIU.cciuIndice;
+		ON CPR.cpaiIndice = CCIU.cpaiIndice
+		AND CPR.cedoIndice = CCIU.cedoIndice
+		AND CPR.cciuIndice = CCIU.cciuIndice;
 
 
 CREATE VIEW v_PRECIO_PINATA

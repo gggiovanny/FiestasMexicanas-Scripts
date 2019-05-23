@@ -36,6 +36,8 @@ INSERT INTO CATALOGO_ESTADOS(cpaiIndice,cedoIndice,cedoNombre) VALUES (1,   31, 
 INSERT INTO CATALOGO_ESTADOS(cpaiIndice,cedoIndice,cedoNombre) VALUES (1,   32,   'ZACATECAS     ')                               
 
 INSERT INTO CATALOGO_CIUDADES(cpaiIndice, cedoIndice, cciuIndice, cciuNombre) VALUES (1, 31, 1, 'MERIDA');
+INSERT INTO CATALOGO_CIUDADES(cpaiIndice, cedoIndice, cciuIndice, cciuNombre) VALUES (1, 14, 1, 'GUADALAJARA');
+
 
 /* Catalogos de piñatas */
 /* Tipo:
@@ -98,6 +100,37 @@ VALUES
 	'+52999412345',
 	'+52999412345',
 	'didier.pena@gmail.com'
+);
+
+INSERT INTO CATALOGO_CLIENTES
+(
+	cclieCodigo,                       
+	cclieNombres,
+	cclieApellidoPaterno,
+	cclieApellidoMaterno,
+	cclieRazonSocial,
+	cpaiIndice,
+	cedoIndice,
+	cciuIndice,
+	cclieDireccion,
+	cclieTelefono,
+	cclieCelular,
+	cclieEmail
+)
+VALUES
+(
+	2,
+	'KORA',
+	'AMAYA',
+	'VALDEZ',
+	'KORY INC.',
+	1,
+	14,
+	1,
+	'CALLE 123 COL. CAUCEL ENTRE 123B Y 123C',
+	'+52999412345',
+	'+52999412345',
+	'kory.amaya@gmail.com'
 );
 
 INSERT INTO CATALOGO_TAMANO_PINATA VALUES (1,'CHICA');
