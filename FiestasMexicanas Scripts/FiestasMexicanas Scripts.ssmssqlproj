@@ -27,6 +27,18 @@
           <ConnectionProtocol>NotSpecified</ConnectionProtocol>
           <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
         </ConnectionNode>
+        <ConnectionNode Name="GGONZALEZ-PC\SQLEXPRESS:SA">
+          <Created>2019-05-25T14:02:55.7814492-05:00</Created>
+          <Type>SQL</Type>
+          <Server>GGONZALEZ-PC\SQLEXPRESS</Server>
+          <UserName>SA</UserName>
+          <Authentication>SQL</Authentication>
+          <InitialDB />
+          <LoginTimeout>30</LoginTimeout>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
+        </ConnectionNode>
       </Items>
     </LogicalFolder>
     <LogicalFolder Name="Queries" Type="0" Sorted="true">
@@ -44,8 +56,8 @@
           <FullPath>01 DROP ALL TABLES.sql</FullPath>
         </FileNode>
         <FileNode Name="03 INSERTS_01_CATALOGOS.sql">
-          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:25.6.162.75:False:SA</AssociatedConnectionMoniker>
-          <AssociatedConnSrvName>25.6.162.75</AssociatedConnSrvName>
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:GGONZALEZ-PC\SQLEXPRESS:False:SA</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>GGONZALEZ-PC\SQLEXPRESS</AssociatedConnSrvName>
           <AssociatedConnUserName>SA</AssociatedConnUserName>
           <FullPath>03 INSERTS_01_CATALOGOS.sql</FullPath>
         </FileNode>
@@ -56,10 +68,16 @@
           <FullPath>CREATE VIEWS.sql</FullPath>
         </FileNode>
         <FileNode Name="SELECTS.sql">
-          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:25.6.162.75:False:SA</AssociatedConnectionMoniker>
-          <AssociatedConnSrvName>25.6.162.75</AssociatedConnSrvName>
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:GGONZALEZ-PC\SQLEXPRESS:False:SA</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>GGONZALEZ-PC\SQLEXPRESS</AssociatedConnSrvName>
           <AssociatedConnUserName>SA</AssociatedConnUserName>
           <FullPath>SELECTS.sql</FullPath>
+        </FileNode>
+        <FileNode Name="UPDATES.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:GGONZALEZ-PC\SQLEXPRESS:False:SA</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>GGONZALEZ-PC\SQLEXPRESS</AssociatedConnSrvName>
+          <AssociatedConnUserName>SA</AssociatedConnUserName>
+          <FullPath>UPDATES.sql</FullPath>
         </FileNode>
       </Items>
     </LogicalFolder>
