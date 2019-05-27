@@ -63,7 +63,7 @@ FROM PRECIO_PINATA PPI
 INNER JOIN CATALOGO_TIPO_PINATA CTP
 	ON PPI.ctpinCodigo = CTP.ctpinCodigo;
 
-CREATE VIEW v_COTIZACIONES
+ALTER VIEW v_COTIZACIONES
 AS
 	SELECT
 		PED.ppedCodigo AS 'Codigo',
@@ -72,7 +72,8 @@ AS
 		PED.ppedLlevaDetalle AS 'Detalle',
 		PPI.ppinExisteMolde AS 'Hay molde',
 		PED.ppedDescripcion AS 'Descripcion',
-		CLI.cclieNombres + ' ' + CLI.cclieApellidoPaterno + ' ' + CLI.cclieApellidoMaterno AS 'CLIENTE',
+		CLI.cclieNombres + ' ' + CLI.cclieApellidoPaterno + ' ' + CLI.cclieApellidoMaterno AS 'Cliente',
+		FORMAT(PED.ppedPrecioUnitario, 'C', 'es-MX') AS 'Precio unitario',
 		PED.ppedCantidad AS 'CANTIDAD',
 		FORMAT(PED.ppedPrecioUnitario*PED.ppedCantidad, 'C', 'es-MX') AS 'Importe venta',
 		CASE WHEN PED.ppedFechaSalida IS NOT NULL THEN 1 ELSE 0 END AS 'Entregado'

@@ -3,11 +3,36 @@ SELECT * FROM CATALOGO_ESTADOS;
 SELECT * FROM CATALOGO_CIUDADES;
 
 
-SELECT * FROM PRECIO_PINATA PP
-JOIN CATALOGO_TIPO_PINATA CTP
-	ON PP.ctpinCodigo = CTP.ctpinCodigo
+SELECT * FROM PRECIO_PINATA
+WHERE ctpinCodigo = 1;
+
+SELECT * FROM 
 
 SELECT * FROM CATALOGO_CLIENTES;
+
+SELECT
+	CC.cclieCodigo,
+	CC.cclieNombres,
+	CC.cclieApellidoPaterno,
+	CC.cclieApellidoMaterno,
+	CC.cclieRazonSocial,
+	CC.cclieDireccion,
+	CC.cclieTelefono,
+	CC.cclieCelular,
+	CC.cclieEmail,
+	CP.cpaiNombre,
+	CE.cedoNombre,
+	CCIU.cciuNombre
+FROM CATALOGO_CLIENTES CC
+INNER JOIN CATALOGO_PAISES CP
+	ON CC.cpaiIndice = CP.cpaiIndice
+INNER JOIN CATALOGO_ESTADOS CE
+	ON CC.cpaiIndice = CE.cpaiIndice
+	AND CC.cedoIndice = CE.cedoIndice
+INNER JOIN CATALOGO_CIUDADES CCIU
+	ON CC.cpaiIndice = CCIU.cpaiIndice
+	AND CC.cedoIndice = CCIU.cedoIndice
+	AND CC.cciuIndice = CCIU.cciuIndice;
 
 SELECT * FROM PEDIDO_PINATA;
 
@@ -28,3 +53,11 @@ SELECT * FROM v_ASIGNACION_TRABAJO_ARTESANOS;
 SELECT * FROM v_ASIGNACION_TRABAJO_PEDIDOS_ESPERANDO;
 
 
+SELECT * FROM CATALOGO_CIUDADES WHERE cpaiIndice = 31 AND cedoIndice = 31;
+
+SELECT COUNT(*) FROM PEDIDO_PINATA;
+
+SELECT CONVERT(date, '5/26/2019 8:39:30 PM');
+
+
+SELECT * FROM PRECIO_PINATA WHERE ctpinCodigo = 5
