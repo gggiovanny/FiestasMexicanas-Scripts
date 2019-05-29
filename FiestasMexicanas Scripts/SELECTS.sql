@@ -9,7 +9,13 @@ WHERE ctpinCodigo = 1;
 SELECT * FROM PEDIDO_PINATA;
 SELECT * FROM CATALOGO_TIPO_PINATA;
 
-SELECT * FROM 
+select c.name from sys.columns c
+inner join sys.views t 
+on t.object_id = c.object_id
+and t.name = 'v_CATALOGO_CLIENTES' 
+
+select * from sys.columns
+select * from sys.tables
 
 SELECT * FROM CATALOGO_CLIENTES;
 
@@ -40,6 +46,7 @@ INNER JOIN CATALOGO_CIUDADES CCIU
 SELECT * FROM PEDIDO_PINATA;
 
 SELECT * FROM v_CLIENTES;
+SELECT * FROM v_CATALOGO_CLIENTES;
 
 SELECT * FROM v_PROVEEDORES;
 
@@ -64,3 +71,16 @@ SELECT CONVERT(date, '5/26/2019 8:39:30 PM');
 
 
 SELECT * FROM PRECIO_PINATA WHERE ctpinCodigo = 5
+
+SELECT * FROM USUARIOS_SISTEMA
+WHERE usisCodigo = 3
+
+SELECT 	* FROM CATALOGO_EMPLEADOS 
+
+select * from CATALOGO_EMPLEADOS_PUESTOS
+
+
+SELECT 
+	                                        CE.cemppCodigo 
+                                        FROM CATALOGO_EMPLEADOS CE
+                                        WHERE CE.cempCodigo = 3;

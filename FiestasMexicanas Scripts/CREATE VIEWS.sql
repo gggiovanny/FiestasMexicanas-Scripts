@@ -66,42 +66,72 @@ INNER JOIN CATALOGO_TIPO_PINATA CTP
 ALTER VIEW v_COTIZACIONES
 AS
 	SELECT
-		PED.ppedCodigo AS 'Codigo',
-		CTP.ctpinNombre AS 'Tipo',
-		TAM.ctampNombre AS 'Tamaño',
-		PED.ppedLlevaDetalle AS 'Detalle',
-		PPI.ppinExisteMolde AS 'Hay molde',
-		PED.ppedDescripcion AS 'Descripcion',
-		CLI.cclieNombres + ' ' + CLI.cclieApellidoPaterno + ' ' + CLI.cclieApellidoMaterno AS 'Cliente',
-		FORMAT(PED.ppedPrecioUnitario, 'C', 'es-MX') AS 'Precio unitario',
-		PED.ppedCantidad AS 'CANTIDAD',
-		FORMAT(PED.ppedPrecioUnitario*PED.ppedCantidad, 'C', 'es-MX') AS 'Importe venta',
-		CASE WHEN PED.ppedFechaSalida IS NOT NULL THEN 1 ELSE 0 END AS 'Entregado'
+		PED.ppedCodigo AS 'txtCodigo',
+		PED.ctpinCodigo AS 'cmbTipo',
+		PED.ctampCodigo AS 'cmbTamaño',
+		PED.ppedLlevaDetalle AS 'chkDetalle',
+		PPI.ppinExisteMolde AS 'chkHay molde',
+		PED.ppedDescripcion AS 'txtDescripcion',
+		PED.cclieCodigo AS 'cmbCliente',
+		FORMAT(PED.ppedPrecioUnitario, 'C', 'es-MX') AS 'txtImporte Venta',
+		PED.ppedCantidad AS 'txtCantidad',
+		--FORMAT(PED.ppedPrecioUnitario*PED.ppedCantidad, 'C', 'es-MX') AS 'Importe venta',
+		CASE	WHEN PED.ppedFechaSalida IS NULL THEN 0
+				WHEN FORMAT ( PED.ppedFechaSalida, 'd', 'es-MX' ) = FORMAT ( CONVERT(date, '01/01/1900'), 'd', 'es-MX' ) THEN 0
+				ELSE 1 END AS 'chkEntregado'
 	FROM PEDIDO_PINATA PED
-	INNER JOIN CATALOGO_TIPO_PINATA CTP
-		ON PED.ctpinCodigo = CTP.ctpinCodigo
 	INNER JOIN PRECIO_PINATA PPI
 		ON PED.ctpinCodigo = PPI.ctpinCodigo
-	INNER JOIN CATALOGO_TAMANO_PINATA TAM
-		ON PED.ctampCodigo = TAM.ctampCodigo
-	INNER JOIN CATALOGO_CLIENTES CLI
-		ON PED.cclieCodigo = CLI.cclieCodigo;
 
-CREATE VIEW v_GESTOR_GANANCIAS
-AS
-
+ALTER VIEW v_GESTOR_GANANCIAS
+AS/*
 	SELECT
 		FORMAT ( PED.ppedFechaSalida, 'D', 'es-MX' ) AS 'FECHA',
-		(select COUNT(x.ppedCodigo) from PEDIDO_PINATA x where DATEPART(week, x.ppedFechaSalida) = DATEPART(week, PED.ppedFechaSalida)) AS 'PIÑATAS VENDIDAS',
-		(select FORMAT(SUM(x.ppedCantidad * x.ppedPrecioUnitario), 'C', 'es-MX') from PEDIDO_PINATA x where DATEPART(week, x.ppedFechaSalida) = DATEPART(week, PED.ppedFechaSalida)) AS 'VENTAS BRUTAS',
+		(	select COUNT(x.ppedCodigo) 
+			from PEDIDO_PINATA x 
+			where x.ppedFechaSalida = PED.ppedFechaSalida
+		)*PED.ppedCantidad AS 'PIÑATAS VENDIDAS',
+		(	select FORMAT(SUM(x.ppedCantidad * x.ppedPrecioUnitario), 'C', 'es-MX') 
+			from PEDIDO_PINATA x
+			/*inner join ARTESANOS_PEDIDOS ap
+				on x.ppedCodigo = ap.ppedCodigo*/
+			where DATEPART(week, x.ppedFechaSalida) = DATEPART(week, PED.ppedFechaSalida)
+		) AS 'VENTAS BRUTAS',
 		(select FORMAT(SUM(x.ppedCantidad * x.ppedPrecioUnitario) * 0.16, 'C', 'es-MX') from PEDIDO_PINATA x where DATEPART(week, x.ppedFechaSalida) = DATEPART(week, PED.ppedFechaSalida)) AS 'IVA',
 		(select FORMAT(SUM(x.ppedCantidad * x.ppedPrecioUnitario) - (SUM(x.ppedCantidad * x.ppedPrecioUnitario) * 0.16), 'C', 'es-MX') from PEDIDO_PINATA x where DATEPART(week, x.ppedFechaSalida) = DATEPART(week, PED.ppedFechaSalida)) AS 'VENTAS NETAS'
 	FROM PEDIDO_PINATA PED
 	WHERE DATEPART(week, PED.ppedFechaSalida) = DATEPART(week, getdate());
+	*/
 
-CREATE VIEW v_VISOR_CARGA_TRABAJO
+	SELECT
+		FORMAT ( PED.ppedFechaSalida, 'D', 'es-MX' ) AS 'FECHA',
+		(	select COUNT(x.ppedCodigo) 
+			from PEDIDO_PINATA x 
+			where x.ppedFechaSalida = PED.ppedFechaSalida
+		)*PED.ppedCantidad AS 'PIÑATAS VENDIDAS',
+		FORMAT((	select COUNT(x.ppedCodigo) 
+			from PEDIDO_PINATA x 
+			where x.ppedFechaSalida = PED.ppedFechaSalida
+		)*PED.ppedCantidad*PED.ppedPrecioUnitario, 'C', 'es-MX') AS 'VENTAS BRUTAS',
+		FORMAT((	select COUNT(x.ppedCodigo) 
+			from PEDIDO_PINATA x 
+			where x.ppedFechaSalida = PED.ppedFechaSalida
+		)*PED.ppedCantidad*PED.ppedPrecioUnitario*0.16, 'C', 'es-MX') AS 'IVA',
+		FORMAT(((	select COUNT(x.ppedCodigo) 
+			from PEDIDO_PINATA x 
+			where x.ppedFechaSalida = PED.ppedFechaSalida
+		)*PED.ppedCantidad*PED.ppedPrecioUnitario)-((	select COUNT(x.ppedCodigo) 
+			from PEDIDO_PINATA x 
+			where x.ppedFechaSalida = PED.ppedFechaSalida
+		)*PED.ppedCantidad*PED.ppedPrecioUnitario*0.16), 'C', 'es-MX') AS 'VENTAS NETAS'
+	FROM PEDIDO_PINATA PED
+	WHERE DATEPART(week, PED.ppedFechaSalida) = DATEPART(week, getdate());
+
+
+ALTER VIEW v_VISOR_CARGA_TRABAJO
 AS
 	SELECT
+		PED.ppedCodigo AS 'CODIGO_PEDIDO',
 		ART.cempNombres AS 'NOMBRE',
 		ART.cempApellidoPaterno + ' ' + ART.cempApellidoMaterno AS 'APELLIDOS',
 		(select COUNT(*) from ARTESANOS_PEDIDOS x where x.cempCodigo = PART.cempCodigo and x.artpedFechaCompletado is null) AS 'PIÑATAS EN COLA',
@@ -141,7 +171,7 @@ AS
 		ON ART.cempCodigo = EMP.cempCodigo;
 
 
-CREATE VIEW v_ASIGNACION_TRABAJO_PEDIDOS_ESPERANDO
+ALTER VIEW v_ASIGNACION_TRABAJO_PEDIDOS_ESPERANDO
 AS
 	SELECT
 		PED.ppedCodigo AS 'FOLIO',
@@ -163,7 +193,48 @@ AS
 		ON PED.ctampCodigo = TAM.ctampCodigo
 	INNER JOIN CATALOGO_CLIENTES CLI
 		ON PED.cclieCodigo = CLI.cclieCodigo
-	INNER JOIN ARTESANOS_PEDIDOS PART
+	FULL OUTER JOIN ARTESANOS_PEDIDOS PART
 		ON PED.ppedCodigo = PART.ppedCodigo
-	WHERE PART.cpestCodigo < 4
-	AND PART.artpedFechaCompletado IS NULL;
+	WHERE PART.cpestCodigo IS NULL
+	
+
+ALTER VIEW v_CATALOGO_CLIENTES
+AS
+	SELECT
+		CC.cclieCodigo,
+		CC.cclieNombres + ' ' + CC.cclieApellidoPaterno + ' ' + CC.cclieApellidoMaterno AS 'cclieNombre'
+	FROM CATALOGO_CLIENTES CC
+
+ALTER VIEW v_ARTESANOS_SUELDOS
+AS
+	SELECT
+		ART.cempCodigo AS 'CODIGO',
+		EMP.cempNombres AS 'NOMBRE',
+		EMP.cempApellidoPaterno + ' ' + EMP.cempApellidoMaterno AS 'APELLIDOS',
+		(	select SUM(pp.ppedCantidad)
+			from ARTESANOS_PEDIDOS ap
+			inner join PEDIDO_PINATA pp
+				on ap.ppedCodigo = pp.ppedCodigo
+			where ap.cempCodigo = ART.cempCodigo
+			and ap.artpedFechaCompletado > CONVERT(date, '01/01/1900')		
+			and DATEPART(week, ap.artpedFechaCompletado) = DATEPART(week, getdate())
+		) AS 'PIÑATAS HECHAS',
+		CAST(CAST(ART.artGananciaPorcentaje * 100 AS NUMERIC(3)) AS VARCHAR) + '%' AS 'GANANCIA %',
+		FORMAT((	select SUM(pp.ppedPrecioUnitario*ppedCantidad) 
+			from PEDIDO_PINATA pp
+			inner join ARTESANOS_PEDIDOS ap
+				ON pp.ppedCodigo = ap.ppedCodigo
+			where ap.cempCodigo = ART.cempCodigo
+			and ap.cpestCodigo = 4
+			and DATEPART(week, ap.artpedFechaCompletado) = DATEPART(week, getdate())
+		) * ART.artGananciaPorcentaje, 'C', 'es-MX' ) AS 'TOTAL GANANCIA',
+		FORMAT(ART.artSueldoBase, 'C', 'es-MX') AS 'SUELDO BRUTO',
+		FORMAT(ART.artSueldoBase * 0.16 , 'C', 'es-MX') AS 'I.V.A.',
+		FORMAT(ART.artSueldoBase - (ART.artSueldoBase * 0.16), 'C', 'es-MX')AS 'SUELDO NETO'
+	FROM ARTESANOS ART
+	INNER JOIN CATALOGO_EMPLEADOS EMP
+		ON ART.cempCodigo = EMP.cempCodigo
+
+
+
+

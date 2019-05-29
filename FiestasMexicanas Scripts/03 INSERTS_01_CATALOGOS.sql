@@ -312,7 +312,88 @@ VALUES
 	CONVERT(date, '2002-03-17')
 );
 
+INSERT INTO CATALOGO_EMPLEADOS
+(
+	cempCodigo,
+	cemppCodigo,
+	cempNombres,
+	cempApellidoPaterno,
+	cempApellidoMaterno,
+	cempSexo, --0 para hombre, 1 para mujer
+	cempFechaNacimiento,
+	cempHomoclave,
+	cpaiIndice,
+	cedoIndice,
+	cciuIndice,
+	cempDireccion,
+	cempTelefono,
+	cempCelular,
+	cempSueldoBruto,
+	cempFechaContratacion
+)
+VALUES
+(
+	3,
+	3, --es artesano
+	'HUMBERTO',
+	'CIAU',
+	'CHALE',
+	0, --hombre
+	CONVERT(date, '1967-03-25'),
+	'773',
+	1,
+	31,
+	1,
+	'CALLE 123B COL BRISAS DEL SUR',
+	'9991646778',
+	'9991676436',
+	0,
+	CONVERT(date, '2006-03-17')
+);
+
+
+INSERT INTO CATALOGO_EMPLEADOS
+(
+	cempCodigo,
+	cemppCodigo,
+	cempNombres,
+	cempApellidoPaterno,
+	cempApellidoMaterno,
+	cempSexo, --0 para hombre, 1 para mujer
+	cempFechaNacimiento,
+	cempHomoclave,
+	cpaiIndice,
+	cedoIndice,
+	cciuIndice,
+	cempDireccion,
+	cempTelefono,
+	cempCelular,
+	cempSueldoBruto,
+	cempFechaContratacion
+)
+VALUES
+(
+	4,
+	2, --es vendedor
+	'MARCOS',
+	'EUAN',
+	'MARTINEZ',
+	1, --hombre
+	CONVERT(date, '1967-03-25'),
+	'456',
+	1,
+	31,
+	1,
+	'CALLE 123B COL BRISAS DEL SUR',
+	'9991646778',
+	'9991676436',
+	1200,
+	CONVERT(date, '2008-03-17')
+);
+
+
 INSERT INTO ARTESANOS (cempCodigo, artGananciaPorcentaje, artSueldoBase) VALUES (2, 0.30, 0);
+INSERT INTO ARTESANOS (cempCodigo, artGananciaPorcentaje, artSueldoBase) VALUES (3, 0.25, 0);
 
 INSERT INTO CATALOGO_PEDIDO_ESTATUS VALUES (1, 'EN ESPERA');
 INSERT INTO CATALOGO_PEDIDO_ESTATUS VALUES (2, 'ARMANDO');
@@ -321,6 +402,8 @@ INSERT INTO CATALOGO_PEDIDO_ESTATUS VALUES (4, 'TERMINADA');
 
 INSERT INTO ARTESANOS_PEDIDOS (cempCodigo, ppedCodigo, cpestCodigo) VALUES (2, 1, 1);
 INSERT INTO ARTESANOS_PEDIDOS (cempCodigo, ppedCodigo, cpestCodigo) VALUES (2, 2, 1);
+
+
 
 UPDATE ARTESANOS_PEDIDOS
 SET cpestCodigo = 2
@@ -332,3 +415,10 @@ WHERE ppedCodigo = 1;
 
 INSERT INTO USUARIOS_SISTEMA VALUES (1, 1, 'DAVID', '123456');
 INSERT INTO USUARIOS_SISTEMA VALUES (2, 2, 'JORGE', '246810');
+INSERT INTO USUARIOS_SISTEMA VALUES (3, 3, 'HUMBERTO', '123456');
+INSERT INTO USUARIOS_SISTEMA VALUES (4, 4, 'MARCOS', '123456');
+
+
+
+
+DELETE FROM ARTESANOS_PEDIDOS;

@@ -79,6 +79,12 @@
           <AssociatedConnUserName>SA</AssociatedConnUserName>
           <FullPath>CREATE VIEWS.sql</FullPath>
         </FileNode>
+        <FileNode Name="PROCEDIMIENTOS.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:GGONZALEZ-PC:False:SA</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>GGONZALEZ-PC</AssociatedConnSrvName>
+          <AssociatedConnUserName>SA</AssociatedConnUserName>
+          <FullPath>PROCEDIMIENTOS.sql</FullPath>
+        </FileNode>
         <FileNode Name="SELECTS.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:GGONZALEZ-PC:False:SA</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>GGONZALEZ-PC</AssociatedConnSrvName>
@@ -86,8 +92,8 @@
           <FullPath>SELECTS.sql</FullPath>
         </FileNode>
         <FileNode Name="UPDATES.sql">
-          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:GGONZALEZ-PC\SQLEXPRESS:False:SA</AssociatedConnectionMoniker>
-          <AssociatedConnSrvName>GGONZALEZ-PC\SQLEXPRESS</AssociatedConnSrvName>
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:GGONZALEZ-PC:False:SA</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>GGONZALEZ-PC</AssociatedConnSrvName>
           <AssociatedConnUserName>SA</AssociatedConnUserName>
           <FullPath>UPDATES.sql</FullPath>
         </FileNode>
